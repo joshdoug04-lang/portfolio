@@ -21,7 +21,7 @@ export const projects = [
     tags: ["Claude API", "Next.js", "Claude Code"],
     // Optional links. Leave as "" to hide.
     // liveUrl adds a "Try Live Demo" button to the card, opening in a new tab.
-    liveUrl: "[ADD LIVE DEMO LINK]",
+    liveUrl: "https://campaign-builder-inky.vercel.app",
     repoUrl: "",
     caseStudy: [
       { heading: "Problem", body: "[ADD PROBLEM]" },
