@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+/* The site's palette and fonts. Change a value here and it updates everywhere. */
+@theme inline {
+  --color-paper: #f5f3ee;
+  --color-card: #fbfaf7;
+  --color-ink: #15140f;
+  --color-ink-soft: #201f18;
+  --color-line: #dbd7cc;
+  --color-line-inv: #35332a;
+  --color-muted: #5d5a50;
+  --color-muted-inv: #aba798;
+  --color-accent: #b0451e;
+  --color-accent-inv: #ee9069;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-display: var(--font-instrument), Georgia, serif;
+}
+
+html {
+  scroll-padding-top: 5.5rem;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.on-dark :focus-visible {
+  outline-color: var(--color-accent-inv);
+}
+
+/* Unfilled [ADD ...] content, so it's obvious what still needs writing. */
+.placeholder {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  letter-spacing: 0;
+  border-bottom: 1px dashed currentColor;
+  opacity: 0.75;
+}
+
+/* Faint grid behind the dark sections, fading out toward the edges. */
+.grid-accent {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, var(--color-line-inv) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-line-inv) 1px, transparent 1px);
+  background-size: 4rem 4rem;
+  opacity: 0.55;
+  mask-image: radial-gradient(ellipse 75% 85% at 80% 0%, #000 0%, transparent 72%);
+}
+
+.glow-accent {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 55% 60% at 88% -5%,
+    color-mix(in srgb, var(--color-accent-inv) 20%, transparent),
+    transparent 70%
+  );
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Hero content eases in once on load, one item after another. */
+  .rise {
+    animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: calc(var(--step, 0) * 90ms);
+  }
+
+  /* Sections ease in as they scroll into view, in browsers that support it. */
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 30%;
+    }
+  }
+}
