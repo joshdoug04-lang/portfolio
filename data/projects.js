@@ -46,7 +46,7 @@ export const projects = [
       "An AI tool that researches any company on the web and turns real sources into a structured, cited intelligence report. Currently in development.",
     tags: ["Claude Code", "Tavily API", "Next.js"],
     // Optional links. Leave as "" to hide.
-    liveUrl: "",
+    liveUrl: "https://ai-company-intelligence.vercel.app",
     repoUrl: "",
     caseStudy: [
       { heading: "Problem", body: "[ADD PROBLEM]" },
